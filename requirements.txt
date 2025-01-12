@@ -5,3 +5,4 @@ numpy
 joblib==1.2.0
 streamlit
 scikit-learn
+pandas
