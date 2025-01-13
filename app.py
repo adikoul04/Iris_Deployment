@@ -47,6 +47,6 @@ if st.button("Predict type of Iris"):
 
     # Display the image/icon corresponding to the predicted class
     image_path = class_to_image(predicted_label)
-    st.image(image_path, use_column_width=True)
+    st.image(image_path, use_container_width=True)
 
 st.text('')
