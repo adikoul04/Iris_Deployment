@@ -10,16 +10,16 @@ def predict(data):
 # Function to map classes to images
 def class_to_image(class_name):
     if class_name == "setosa":
-        return "images/setosa.jpg"  # Replace with the actual path to your setosa image
+        return "images/setosa.jpg"  
     elif class_name == "versicolor":
-        return "images/versicolor.jpg"  # Replace with the actual path to your versicolor image
+        return "images/versicolor.jpg"
     elif class_name == "virginica":
-        return "images/virginica.jpg"  # Replace with the actual path to your virginica image
+        return "images/virginica.jpg"
 
 st.title('Classifying Iris Flowers')
-st.markdown('Model to classify iris flowers into \
-     (setosa, versicolor, virginica) based on their sepal/petal \
-    and length/width.')
+st.markdown('Model to classify iris flowers into '
+            '(setosa, versicolor, virginica) based on their sepal/petal '
+            'length/width.')
 
 st.header("Plant Features")
 col1, col2 = st.columns(2)
@@ -36,13 +36,17 @@ with col2:
 
 st.text('')
 if st.button("Predict type of Iris"):
-    result = predict(
-        np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
-    st.text(result[0])
+    # Predict returns an array of numeric classes (e.g., [0], [1], or [2])
+    result = predict(np.array([[sepal_l, sepal_w, petal_l, petal_w]]))
+
+    # Map numeric class to the string label
+    label_map = {0: "setosa", 1: "versicolor", 2: "virginica"}
+    predicted_label = label_map[result[0]]
+    
+    st.text(predicted_label)
 
     # Display the image/icon corresponding to the predicted class
-    image_path = class_to_image(result[0].split("-")[1])
+    image_path = class_to_image(predicted_label)
     st.image(image_path, use_column_width=True)
-
 
 st.text('')
